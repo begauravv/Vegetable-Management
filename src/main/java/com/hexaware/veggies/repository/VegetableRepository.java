@@ -9,5 +9,5 @@ import com.hexaware.veggies.entity.Vegetable;
 
 public interface VegetableRepository extends JpaRepository<Vegetable, Long> {
 	public Vegetable findByVegetableName(String vegetableName);
-	public List<Vegetable> findByManager_ManagerId(Long managerId);
+	
 }

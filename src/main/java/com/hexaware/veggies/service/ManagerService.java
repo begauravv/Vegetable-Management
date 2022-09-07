@@ -15,7 +15,6 @@ public interface ManagerService {
 	   Manager getManagerByEmail(String email);
 	   void deleteManagerById(Long managerId);
 	   Manager updateManager(Manager manager) throws ResourceNotFoundException;
-	   Boolean isLogin(String email, String password);
-	   Boolean isUserExist(Manager manager);
+	   
 
 }

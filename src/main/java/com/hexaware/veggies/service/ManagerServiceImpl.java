@@ -63,24 +63,5 @@ public class ManagerServiceImpl implements ManagerService {
 		return managerRepository.save(manager);
 	}
 
-	@Override
-	public Boolean isLogin(String email, String password) {
-		// TODO Auto-generated method stub
-		Manager manager = managerRepository.findByEmail (email);
-        if(manager==null) throw new RuntimeException ("Email Not Exist.."+email);
-        System.out.println (manager.getPassword ()+"      "+password);
-        if(!manager.getPassword().equals (password)) throw new RuntimeException ("Password Not Correct..");
-        return true;
-	}
-
-	@Override
-	public Boolean isUserExist(Manager manager) {
-		Manager manager1 = managerRepository.findByEmail (manager.getEmail ());
-        if(manager1!=null) {
-            throw new RuntimeException ("Email Exist..");
-        }else {
-            return true;
-	}
-
-}
+	
 }

@@ -2,7 +2,7 @@ package com.hexaware.veggies.controller;
 
 import java.util.List;
 
-
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,17 +17,22 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.hexaware.veggies.entity.Customer;
+import com.hexaware.veggies.entity.Vegetable;
 import com.hexaware.veggies.exception.ResourceNotFoundException;
 import com.hexaware.veggies.service.CustomerService;
+import com.hexaware.veggies.service.VegetableService;
 
 @RestController
 @RequestMapping("/customer")
 public class CustomerController {
 	@Autowired
 	private CustomerService customerService;
+	
+	@Autowired
+	private VegetableService vegetableService;
     
 	@PostMapping("/addCustomer")
-	public ResponseEntity<String> addCustomer(@RequestBody Customer customer){
+	public ResponseEntity<String> addCustomer(@Valid @RequestBody Customer customer){
 		Customer rcustomer = customerService.addCustomer(customer);
 		if(rcustomer!=null)
 			return new ResponseEntity<>("Successfull added customer", HttpStatus.OK);
@@ -41,7 +46,7 @@ public class CustomerController {
 		
 	}
 	@PutMapping("/updatecustomer/{cid}")
-	public Customer updateCustomer(@RequestBody Customer newCustomer,@PathVariable("cid") Long customerId) throws ResourceNotFoundException {
+	public Customer updateCustomer(@Valid @RequestBody Customer newCustomer,@PathVariable("cid") Long customerId) throws ResourceNotFoundException {
 		Customer customer =  customerService.getCustomerById(customerId)
 				.orElseThrow(() -> new ResourceNotFoundException("Customer not exists with id" +customerId));
 
@@ -72,15 +77,6 @@ public class CustomerController {
 		return customerService.getCustomerByUserName(userName);
 	}
 	
-	@PostMapping("/login/{cemail}/{cpassword}")
-	public String CustomerHomePage(@PathVariable("cemail") String email, @PathVariable("cpassword") String password) {
-		if(customerService.isLogin(email,password) == true) {
-			return "Success";
-		}
-		else
-			return "Login Failed";
-		
-	}
 	
 	
 }

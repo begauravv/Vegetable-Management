@@ -1,12 +1,20 @@
 package com.hexaware.veggies.entity;
 
+import java.util.ArrayList;
+
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
 
 @Entity
 @Table(name = "manager")
@@ -17,33 +25,39 @@ public class Manager {
 	@Column(name = "manager_id")
 	private Long managerId;
 	
-	@Column(name = "first_name")
+	@Column(name = "first_name",nullable = false)
 	private String firstName;
 	
-	@Column(name = "last_name")
+	@Column(name = "last_name",nullable = false)
 	private String lastName;
 	
-	@Column(name = "email")
+	@Column(name = "email",nullable = false)
 	private String email;
 	
-	@Column(name = "username")
+	@Column(name = "username",nullable = false)
 	private String userName;
 	
-	@Column(name = "password")
+	@Column(name = "password",nullable = false)
 	private String password;
+	
+	@OneToMany(cascade = CascadeType.ALL)
+	  @JoinColumn(name="vegetable_fkid" ,referencedColumnName = "manager_id")
+	  List<Vegetable> vegetable=new ArrayList<>();
 
 	public Manager() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Manager( String firstName, String lastName, String email, String userName, String password) {
+	public Manager(String firstName, String lastName, String email, String userName, String password,
+			List<Vegetable> vegetable) {
 		super();
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
 		this.userName = userName;
 		this.password = password;
+		this.vegetable = vegetable;
 	}
 
 	public Long getManagerId() {
@@ -94,13 +108,26 @@ public class Manager {
 		this.password = password;
 	}
 
-	@Override
-	public String toString() {
-		return "Manager [managerId=" + managerId + ", firstName=" + firstName + ", lastName=" + lastName + ", email="
-				+ email + ", userName=" + userName + ", password=" + password + "]";
+	public List<Vegetable> getVegetable() {
+		return vegetable;
 	}
-	
-	
+
+	public void setVegetable(List<Vegetable> vegetable) {
+		this.vegetable = vegetable;
+	}
+
+	public Manager(Long managerId, String firstName, String lastName, String email, String userName, String password,
+			List<Vegetable> vegetable) {
+		super();
+		this.managerId = managerId;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.email = email;
+		this.userName = userName;
+		this.password = password;
+		this.vegetable = vegetable;
+	}
+
 	
 
 }

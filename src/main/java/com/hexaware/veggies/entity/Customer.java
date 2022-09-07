@@ -2,6 +2,7 @@ package com.hexaware.veggies.entity;
 
 import javax.persistence.Column;
 
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -26,6 +27,9 @@ public class Customer {
 	@Column(name = "email", nullable = false)
 	private String email;
 	
+	@Column(name = "address", nullable = false)
+	private String address;
+	
 	@Column(name = "username", nullable = false)
 	private String userName;
 	
@@ -40,13 +44,13 @@ public class Customer {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Customer(Long customerId, String firstName, String lastName, String email, String userName, String password,
+	public Customer(String firstName, String lastName, String email, String address, String userName, String password,
 			double balance) {
 		super();
-		this.customerId = customerId;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
+		this.address = address;
 		this.userName = userName;
 		this.password = password;
 		this.balance = balance;
@@ -84,6 +88,14 @@ public class Customer {
 		this.email = email;
 	}
 
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
 	public String getUserName() {
 		return userName;
 	}
@@ -111,9 +123,10 @@ public class Customer {
 	@Override
 	public String toString() {
 		return "Customer [customerId=" + customerId + ", firstName=" + firstName + ", lastName=" + lastName + ", email="
-				+ email + ", userName=" + userName + ", password=" + password + ", balance=" + balance + "]";
+				+ email + ", address=" + address + ", userName=" + userName + ", password=" + password + ", balance="
+				+ balance + "]";
 	}
-	
+
 	
 
 }

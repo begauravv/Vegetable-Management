@@ -63,24 +63,7 @@ public class CustomerServiceImpl implements CustomerService {
 		return customerRepository.save(customer);
 	}
 
-	@Override
-	public Boolean isLogin(String email, String password) {
-		// TODO Auto-generated method stub
-		Customer customer = customerRepository.findByEmail (email);
-        if(customer==null) throw new RuntimeException ("Email Not Exist.."+email);
-        System.out.println (customer.getPassword ()+"      "+password);
-        if(!customer.getPassword().equals (password)) throw new RuntimeException ("Password Not Correct..");
-        return true;
-	}
+	
 
-	@Override
-	public Boolean isUserExist(Customer customer) {
-		Customer customer1 = customerRepository.findByEmail (customer.getEmail ());
-        if(customer1!=null) {
-            throw new RuntimeException ("Email Exist..");
-        }else {
-            return true;
-	}
 
-}
 }

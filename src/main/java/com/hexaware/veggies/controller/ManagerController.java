@@ -2,6 +2,8 @@ package com.hexaware.veggies.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -25,7 +27,7 @@ public class ManagerController {
 	private ManagerService managerService;
     
 	@PostMapping("/addManager")
-	public ResponseEntity<String> addManager(@RequestBody Manager manager){
+	public ResponseEntity<String> addManager(@Valid @RequestBody Manager manager){
 		Manager rmanager = managerService.addManager(manager);
 		if(rmanager!=null)
 			return new ResponseEntity<>("Successfull added manager", HttpStatus.OK);
@@ -39,7 +41,7 @@ public class ManagerController {
 		
 	}
 	@PutMapping("/updatemanager/{mid}")
-	public Manager updateManager(@RequestBody Manager newManager,@PathVariable("mid") Long managerId) throws ResourceNotFoundException {
+	public Manager updateManager(@Valid @RequestBody Manager newManager,@PathVariable("mid") Long managerId) throws ResourceNotFoundException {
 		Manager manager =  managerService.getManagerById(managerId)
 				.orElseThrow(() -> new ResourceNotFoundException("Manager not exists with id" +managerId));
 
@@ -70,15 +72,7 @@ public class ManagerController {
 		return managerService.getManagerByUserName(userName);
 	}
 	
-	@PostMapping("/login/{memail}/{mpassword}")
-	public String ManagerHomePage(@PathVariable("memail") String email, @PathVariable("mpassword") String password) {
-		if(managerService.isLogin(email,password) == true) {
-			return "Success";
-		}
-		else
-			return "Login Failed";
-		
-	}
+	
 	
 	
 }

@@ -28,11 +28,7 @@ public class VegetableServiceImpl implements VegetableService {
 		return vegetableRepository.findAll();
 	}
 
-	@Override
-	public List<Vegetable> getVegetablesByManagerId(Long managerId) {
-		// TODO Auto-generated method stub
-		return vegetableRepository.findByManager_ManagerId(managerId);
-	}
+	
 
 	@Override
 	public Optional<Vegetable> getVegetableById(Long vegetableId) {

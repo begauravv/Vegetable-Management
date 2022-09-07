@@ -10,7 +10,6 @@ public interface VegetableService {
 	
 	   Vegetable addVegetable(Vegetable customer);
 	   List<Vegetable> getAllVegetables();
-	   List<Vegetable> getVegetablesByManagerId(Long managerId);
 	   Optional<Vegetable> getVegetableById(Long vegetableId);
 	   Vegetable getVegetableByName(String vegetableName);
 	   void deleteVegetableById(Long vegetableId);

@@ -67,9 +67,5 @@ public class VegetableController {
 		return vegetableService.getVegetableByName(vegetableName);
 	}
 	
-	@GetMapping("/findvegetablesbymanagerid/{mid}")
-	public List<Vegetable> getVegetableByManagerId(@PathVariable("mid") Long managerId){
-		return vegetableService.getVegetablesByManagerId(managerId);
-	}
-
+	
 }

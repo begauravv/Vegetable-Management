@@ -16,6 +16,5 @@ public interface CustomerService {
    Customer getCustomerByEmail(String email);
    void deleteCustomerById(Long customerId);
    Customer updateCustomer(Customer customer) throws ResourceNotFoundException;
-   Boolean isLogin(String email, String password);
-   Boolean isUserExist(Customer customer);
+  
 }
